@@ -6,38 +6,30 @@ const enviarDatos = (id, name, image, species, status, location) => {
     const rutaArchivoHTML = "../personaje.html";
 
     fetch(rutaArchivoHTML)
-    .then(response => response.text())
-    .then((html)=>{
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(html,"text/html");
+        .then(response => response.text())
+        .then((html)=>{
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(html,'text/html');
 
-        const imagePage = doc.getElementById("imagePage");
-        imagePage.src = (image);
+            const imagePage = doc.getElementById("imagePage");
+            imagePage.src = image;
+            imagePage.classList.add("card-img-top");
 
-        const namePage = soc.getElementById("namePage");
-        namePage.textContent = `Nombre: ${name}`;
+            const namePage = doc.getElementById("namePage");
+            namePage.textContent = `Nombre: ${name}`;
 
-        const speciesPage = soc.getElementById("speciesPage");
-        speciesPage.textContent = `Nombre: ${species}`;
+            const speciesPage = doc.getElementById("speciesPage");
+            speciesPage.textContent = `Nombre: ${species}`;
 
-        const statusPage = soc.getElementById("statusPage");
-        statusPage.textContent = `Nombre: ${status}`;
+            const statusPage = doc.getElementById("statusPage");
+            statusPage.textContent = `Nombre: ${status}`;
 
-        const nuevoHTML = new XMLSerializer().serializeToString(doc);
+            const nuevoHTML = new XMLSerializer().serializeToString(doc);
 
-        document.body.innerHTML = nuevoHTML;
-
-
+            document.body.innerHTML = nuevoHTML;
 
     })
-    .catch((error)=>console.log(`EL ERROR ES: ${error}`));
     
-
-
-
-
-
-
 }
 
 
